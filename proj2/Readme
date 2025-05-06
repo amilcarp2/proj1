@@ -1,0 +1,47 @@
+# Fleet Logistics Analytics Dashboard
+
+This project is an interactive web-based analytics dashboard designed to visualize key performance indicators in a logistics and delivery fleet operation.
+
+## 📊 Overview
+The dashboard provides insights into fleet composition, delivery volume trends, driver performance, vehicle maintenance, and fuel efficiency. Each chart is sourced from a distinct dataset and uses a unique visual strategy to represent the data meaningfully.
+
+## 📁 Data Sources
+All data is synthetic and generated to simulate a real-world logistics context. The following five CSV files are used:
+
+1. **Deliveries.csv** – Monthly delivery totals with regional distribution
+2. **FleetComposition.csv** – Vehicle type breakdown (Truck, Van, Electric, etc.)
+3. **DriverPerformance.csv** – Driver KPIs including safety, punctuality, and fuel efficiency
+4. **Maintenance.csv** – Vehicle maintenance tasks, costs, and status
+5. **FuelDistance.csv** – Relationship between trip distance and fuel usage
+
+## 📐 Dashboard Layout
+The layout uses Bootstrap 4 for responsive design. Charts are arranged using column and row combinations to reflect importance and function:
+
+- **Row 1**: Large line chart (Deliveries) + small pie chart (Fleet Composition)
+- **Row 2**: Three medium charts — radar (Driver KPIs), doughnut (Maintenance), and scatter (Fuel vs. Distance)
+
+## 📈 Chart Types Used
+- **Line Chart** – Delivery trends over time
+- **Pie Chart** – Fleet composition
+- **Radar Chart** – Driver performance
+- **Doughnut Chart** – Maintenance status
+- **Scatter Plot** – Fuel vs. distance efficiency
+
+## ⚙️ Technologies Used
+- HTML5 & Bootstrap 4
+- Chart.js for chart rendering
+- PapaParse for CSV data parsing
+- JavaScript for dynamic chart population
+
+## 🚀 How to Run Locally
+1. Clone this repository.
+2. Place the five `.csv` files in the same directory as `index.html`.
+3. Open `index.html` in your browser.
+
+## 📹 YouTube Walkthrough
+Watch the walkthrough video embedded below, where I explain how the dashboard works and what each chart represents:
+
+[![Dashboard Overview](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
+
+---
+Created for Assignment Two: Project, Analytics and Interactive Websites.
