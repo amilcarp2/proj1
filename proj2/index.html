@@ -141,29 +141,7 @@ Papa.parse('DriverPerformance.csv', {
 });
 
         // Doughnut chart
-        Papa.parse('Maintenance.csv', {
-            download: true,
-            header: true,
-            complete: function(results) {
-                const statusCounts = {};
-                results.data.forEach(row => {
-                    if (row.Status) {
-                        statusCounts[row.Status] = (statusCounts[row.Status] || 0) + 1;
-                    }
-                });
-                new Chart(document.getElementById('maintenanceChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: Object.keys(statusCounts),
-                        datasets: [{
-                            data: Object.values(statusCounts),
-                            backgroundColor: ['#ffc107', '#28a745']
-                        }]
-                    }
-                });
-            }
-        });
-
+        
         // Scatter chart
         Papa.parse('FuelDistance.csv', {
             download: true,
