@@ -107,41 +107,62 @@
             }
         });
 
-        // Radar chart
-      // Radar chart (Driver Performance)
-Papa.parse('DriverPerformance.csv', {
-    download: true,
-    header: true,
-    complete: function(results) {
-        const metrics = ['On_Time_Delivery_Score', 'Customer_Rating', 'Fuel_Efficiency', 'Safety_Score'];
+        // Radar chart (fixed)
+        Papa.parse('DriverPerformance.csv', {
+            download: true,
+            header: true,
+            complete: function(results) {
+                const metrics = ['On_Time_Delivery_Score', 'Customer_Rating', 'Fuel_Efficiency', 'Safety_Score'];
 
-        // Filter out invalid rows
-        const cleanData = results.data.filter(row =>
-            metrics.every(metric => !isNaN(parseFloat(row[metric])))
-        );
+                // Filter valid rows only
+                const cleanData = results.data.filter(row =>
+                    metrics.every(metric => !isNaN(parseFloat(row[metric])))
+                );
 
-        const avg = metrics.map(metric => {
-            const values = cleanData.map(row => parseFloat(row[metric]));
-            return values.reduce((a, b) => a + b, 0) / values.length;
-        });
+                const avg = metrics.map(metric => {
+                    const values = cleanData.map(row => parseFloat(row[metric]));
+                    return values.reduce((a, b) => a + b, 0) / values.length;
+                });
 
-        new Chart(document.getElementById('driverChart'), {
-            type: 'radar',
-            data: {
-                labels: metrics,
-                datasets: [{
-                    label: 'Avg Score',
-                    data: avg,
-                    backgroundColor: 'rgba(0, 123, 255, 0.3)',
-                    borderColor: 'blue'
-                }]
+                new Chart(document.getElementById('driverChart'), {
+                    type: 'radar',
+                    data: {
+                        labels: metrics,
+                        datasets: [{
+                            label: 'Avg Score',
+                            data: avg,
+                            backgroundColor: 'rgba(0, 123, 255, 0.3)',
+                            borderColor: 'blue'
+                        }]
+                    }
+                });
             }
         });
-    }
-});
 
         // Doughnut chart
-        
+        Papa.parse('Maintenance.csv', {
+            download: true,
+            header: true,
+            complete: function(results) {
+                const statusCounts = {};
+                results.data.forEach(row => {
+                    if (row.Status) {
+                        statusCounts[row.Status] = (statusCounts[row.Status] || 0) + 1;
+                    }
+                });
+                new Chart(document.getElementById('maintenanceChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(statusCounts),
+                        datasets: [{
+                            data: Object.values(statusCounts),
+                            backgroundColor: ['#ffc107', '#28a745']
+                        }]
+                    }
+                });
+            }
+        });
+
         // Scatter chart
         Papa.parse('FuelDistance.csv', {
             download: true,
